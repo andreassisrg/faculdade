@@ -1,16 +1,27 @@
 #include <iostream>
 #include <string>
 
+struct EmployeeData
+{
+    std::string name;
+    std::string address;
+    std::string zipcode;
+};
+
 void ex01();
 void ex02();
 void ex03();
 void ex04();
 void ex05();
-//void fill_data(EmployeeData *ptr, int N);
+void fill_data(EmployeeData *ptr, int N);
 
 int main()
 {
-    ex03();
+    /*
+        Escolha entre as funções ex01 - ex05 para executá-las conforme requisitado
+        nos exercícios discursivos
+    */
+    ex02();
 }
 
 void ex01()
@@ -28,8 +39,8 @@ void ex02()
     std::string explicacao
     {
         "Um ponteiro constante significa que o valor do endereço de memória não pode ser modificado, porém o valor para o qual ele aponta pode. \
-        \n De forma contrária, um ponteiro para um tipo constante aponta para um dado que não pode ser modificado através desse ponteiro, mas que \
-        \n pode ser usado para apontar para outros dados."
+        \nDe forma contrária, um ponteiro para um tipo constante aponta para um dado que não pode ser modificado através desse ponteiro, mas que \
+        \npode ser usado para apontar para outros dados."
     };
 
     std::cout << explicacao << std::endl;
@@ -63,21 +74,14 @@ void ex03()
 
 void ex04()
 {
-    // Declaração da Struct e N
-    struct EmployeeData
-    {
-        std::string name;
-        std::string address;
-        std::string zipcode;
-    };
-    
+    // Quantia de funcionários
     int N { };
     std::cout << "Digite o número de funcionários: ";
     std::cin >> N;
 
     // Alocação de memória
-    struct EmployeeData *funcionarios;
-    funcionarios = new struct EmployeeData[N];
+    EmployeeData *funcionarios;
+    funcionarios = new EmployeeData[N];
 
     // Preenchimento de dados
     for (int i = 0; i < N; i++)
@@ -97,7 +101,7 @@ void ex04()
     // Impressão de dados
     for (int i = 0; i < N; i++)
     {
-        std::cout << "\n Funcionário " << i + 1 << std::endl;
+        std::cout << "\nFuncionário " << i + 1 << std::endl;
         std::cout << "Nome: " << funcionarios[i].name << std::endl;
         std::cout << "Endereço: " << funcionarios[i].address << std::endl;
         std::cout << "CEP: " << funcionarios[i].zipcode << std::endl;
@@ -109,14 +113,7 @@ void ex04()
 
 void ex05()
 {
-    // Declaração da Struct e N
-    struct EmployeeData
-    {
-        std::string name;
-        std::string address;
-        std::string zipcode;
-    };
-    
+    // Quantia de funcionários   
     int N { };
     std::cout << "Digite o número de funcionários: ";
     std::cin >> N;
@@ -125,35 +122,36 @@ void ex05()
     struct EmployeeData *funcionarios;
     funcionarios = new struct EmployeeData[N];
 
+    // Preenchimento e impressão
+    fill_data(funcionarios, N);
+
     // Desalocação de memória
     delete[] funcionarios;
 }
 
-/*
 void fill_data(EmployeeData *ptr, int N)
 {
-        // Preenchimento de dados
+    // Preenchimento de dados
     for (int i = 0; i < N; i++)
     {
         std::cout << "Digite os dados do funcionário " << i + 1 << std::endl;
         
         std::cout << "Nome: ";
-        getline(std::cin >> std::ws, funcionarios[i].name);
+        getline(std::cin >> std::ws, ptr[i].name);
         
         std::cout << "Endereço: ";
-        getline(std::cin >> std::ws, funcionarios[i].address);
+        getline(std::cin >> std::ws, ptr[i].address);
         
         std::cout << "CEP: ";
-        getline(std::cin >> std::ws, funcionarios[i].zipcode);
+        getline(std::cin >> std::ws, ptr[i].zipcode);
     }
 
     // Impressão de dados
     for (int i = 0; i < N; i++)
     {
-        std::cout << "\n Funcionário " << i + 1 << std::endl;
-        std::cout << "Nome: " << funcionarios[i].name << std::endl;
-        std::cout << "Endereço: " << funcionarios[i].address << std::endl;
-        std::cout << "CEP: " << funcionarios[i].zipcode << std::endl;
+        std::cout << "\nFuncionário " << i + 1 << std::endl;
+        std::cout << "Nome: " << ptr[i].name << std::endl;
+        std::cout << "Endereço: " << ptr[i].address << std::endl;
+        std::cout << "CEP: " << ptr[i].zipcode << std::endl;
     }
 }
-*/
